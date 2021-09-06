@@ -1,0 +1,12 @@
+{
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.autoIndent": "brackets",
+	"editor.foldingStrategy": "indentation",
+	"html.format.indentHandlebars": true,
+	"html.format.indentInnerHtml": true,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"prettier.singleQuote": true,
+}
