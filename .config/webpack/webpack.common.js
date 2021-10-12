@@ -35,7 +35,7 @@ module.exports = {
 
 				const loaders = [
 					{ test: /\.(css|postcss)$/i },
-					{ test: /\.s[ac]ss$/i, loader: "sass-loader" },
+					{ test: /\.(s(a|c)ss)$/i, loader: "sass-loader" },
 					{ test: /\.less$/i, loader: "less-loader" },
 					{ test: /\.styl$/i, loader: "stylus-loader" },
 				];
