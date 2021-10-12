@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-(npm run branch:main && git subtree push -P shopify https://github.com/dmaeoka/yofte.git master ) || true
+# (npm run branch:main && git subtree push -P shopify https://github.com/dmaeoka/yofte.git master ) || true
