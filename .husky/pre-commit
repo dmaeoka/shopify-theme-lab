@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-(git-branch-is master && npm run webpack:build && git subtree push -P shopify https://github.com/dmaeoka/yofte.git master ) || true
+(npm run branch:master && npm run webpack:build) || true
