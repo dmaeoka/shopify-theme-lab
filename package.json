@@ -13,13 +13,15 @@
 		"shopify:serve": "cd shopify && shopify theme serve",
 		"shopify:pull": "cd shopify && shopify theme pull",
 		"lint": "run-s -c lint:*",
-		"lint:js": "eslint src/**/*.{js} --config .config/.eslintrc.js",
+		"lint:js": "eslint src/**/*.js --config .config/.eslintrc.js",
 		"lint:css": "stylelint src/**/*.{css,sass,scss} --config .config/.stylelintrc.js",
 		"lint:shopify": "cd shopify && shopify theme check",
 		"fix": "run-s -c fix:*",
-		"fix:js": "eslint src/**/*.{js} --config .config/.eslintrc.js --fix",
+		"fix:js": "eslint src/**/*.js --config .config/.eslintrc.js --fix",
 		"fix:css": "stylelint src/**/*.{css,sass,scss} --config .config/.stylelintrc.js --fix",
-		"fix:shopify": "cd shopify && shopify theme check -a"
+		"fix:shopify": "cd shopify && shopify theme check -a",
+		"prepare": "husky install",
+		"branch:master": "git-branch-is master"
 	},
 	"dependencies": {
 		"@tailwindcss/aspect-ratio": "^0.3.0",
@@ -41,6 +43,8 @@
 		"css-minimizer-webpack-plugin": "^3.0.2",
 		"eslint": "^7.32.0",
 		"eslint-webpack-plugin": "^3.0.1",
+		"git-branch-is": "^4.0.0",
+		"husky": "^7.0.2",
 		"mini-css-extract-plugin": "^2.1.0",
 		"node-sass": "^6.0.1",
 		"npm-run-all": "^4.1.5",
