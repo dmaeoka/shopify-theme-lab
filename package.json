@@ -21,7 +21,8 @@
 		"fix:css": "stylelint src/**/*.{css,sass,scss} --config .config/.stylelintrc.js --fix",
 		"fix:shopify": "cd shopify && shopify theme check -a",
 		"prepare": "husky install",
-		"branch:main": "git-branch-is main"
+		"branch:main": "git-branch-is main",
+		"branch:dev": "git-branch-is dev"
 	},
 	"dependencies": {
 		"@tailwindcss/aspect-ratio": "^0.3.0",
