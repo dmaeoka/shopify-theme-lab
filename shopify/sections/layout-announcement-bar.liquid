@@ -1,34 +1,37 @@
 {% if section.settings.visible %}
-  {% if section.settings.home_page_only == false or template.name == 'index' %}
-    <div class="container text-sm text-center py-2">
-      {{ section.settings.content }}
-    </div>
-  {% endif %}
+	{% if section.settings.home_page_only == false or template.name == 'index' %}
+		<div class="py-2 bg-blue-600">
+			<div class="flex items-center justify-center">
+				<svg class="mr-2" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="3.07129" width="4" height="10" rx="2" transform="rotate(-45 0 3.07129)" fill="white"></rect><rect x="8" y="2.82861" width="4" height="10" rx="2" transform="rotate(-45 8 2.82861)" fill="white"></rect></svg>
+				<p class="text-xs font-bold font-heading text-blue-100">{{ section.settings.content }}</p>
+			</div>
+		</div>
+	{% endif %}
 {% endif %}
 
 {% schema %}
 {
-  "name":"t:sections.announcement-bar.name",
-  "class": "bg-black text-white",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "visible",
-      "label": "t:sections.announcement-bar.settings.show-announcement-bar",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "home_page_only",
-      "label": "t:sections.announcement-bar.settings.show-only-on-home-page",
-      "default": true
-    },
-    {
-      "type": "html",
-      "id": "content",
-      "label": "t:common.content",
-      "default": "Lorem ipsum dolor sit amet."
-    }
-  ]
+	"name":"t:sections.announcement-bar.name",
+	"class": "bg-black text-white",
+	"settings": [
+		{
+			"type": "checkbox",
+			"id": "visible",
+			"label": "t:sections.announcement-bar.settings.show-announcement-bar",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "home_page_only",
+			"label": "t:sections.announcement-bar.settings.show-only-on-home-page",
+			"default": true
+		},
+		{
+			"type": "html",
+			"id": "content",
+			"label": "t:common.content",
+			"default": "Lorem ipsum dolor sit amet."
+		}
+	]
 }
 {% endschema %}

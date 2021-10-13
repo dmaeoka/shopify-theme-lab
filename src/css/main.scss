@@ -5,12 +5,3 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-$black: #000;
-.shopify-section {
-	outline: 1px solid $black;
-
-	.another-section {
-		background: #0f0;
-	}
-}
