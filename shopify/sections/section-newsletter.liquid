@@ -1,4 +1,4 @@
-<section class="relative py-20 lg:py-40 bg-orange-300 overflow-x-hidden">
+<section class="relative py-20 lg:py-40 bg-orange-300 overflow-x-hidden" x-data>
 	<img class="absolute inset-0 w-full h-full" src="{{ 'lines-white-3.static.svg' | asset_url }}" alt="">
 	<div class="relative container px-4 mx-auto">
 		<div class="text-center">
@@ -50,6 +50,7 @@
 {% schema %}
 {
 	"name": "t:sections.newsletter.name",
+	"class": "shopify-section-vue",
 	"settings": [
 		{
 			"type": "text",

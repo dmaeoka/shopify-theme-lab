@@ -1,4 +1,4 @@
-<section class="relative pt-20 md:pt-40 pb-20 bg-blue-800 overflow-x-hidden">
+<section class="relative pt-20 md:pt-40 pb-20 bg-blue-800 overflow-x-hidden" x-data>
 	<img class="absolute top-0 left-0 w-full max-h-32" src="{{ 'line-content.static.svg' | asset_url }}" alt="">
 	<div class="container mx-auto px-4">
 		<div class="max-w-3xl mx-auto text-center">
@@ -23,3 +23,11 @@
 		</div>
 	</div>
 </section>
+
+{% schema %}
+{
+	"name": "Main page",
+	"class": "shopify-section-vue"
+}
+{% endschema %}
+
