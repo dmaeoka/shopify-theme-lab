@@ -1,112 +1,65 @@
-<div class="container max-w-screen-sm">
-	<h1 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-16">
-		{{ 'customer.entry.create_account' | t }}
-	</h1>
+{% layout 'no-header' %}
+<section class="py-20 bg-gray-100 overflow-x-hidden">
+	<div class="relative container px-4 mx-auto">
+		<div class="relative max-w-4xl mx-auto">
+			<div class="absolute inset-0 bg-blue-200 my-24 -ml-4 -mr-4"></div>
+			<div class="relative py-16 md:pt-32 md:pb-20 px-4 sm:px-8 bg-white">
+				<div class="max-w-lg mx-auto text-center">
+					<a class="inline-block mb-14 text-3xl font-bold font-heading" href="{{ routes.root_url }}">
+						<img class="h-9" src="{{ 'yofte-logo.static.svg' | asset_url }}" alt="" width="auto">
+					</a>
+					<h1 class="mb-8 text-4xl md:text-5xl font-bold font-heading">{{ 'customer.entry.create_account' | t }}</h1>
+					<p class="mb-10 font-semibold font-heading">Please, do not hesitate</p>
 
-	{% form 'create_customer' %}
-		<input type="hidden" name="customer[tags]" value="locale={{ request.locale.iso_code }}" />
+					{% form 'create_customer' %}
+						<input type="hidden" name="customer[tags]" value="locale={{ request.locale.iso_code }}" />
+						{% if form.errors %}
+							{% capture error_text %}
+								{{ form.errors | default_errors }}
+							{% endcapture %}
 
-		{% if form.errors %}
-			{% capture error_text %}
-				{{ form.errors | default_errors }}
-			{% endcapture %}
+							{% render 'layout-message',
+								type: 'error'
+								text: error_text
+								class: 'mb-8'
+							%}
+						{% endif %}
 
-			{% render 'layout-message',
-				type: 'error'
-				text: error_text
-				class: 'mb-8'
-			%}
-		{% endif %}
+						<div class="mb-4">
+							<label for="FirstName" class="sr-only">{{ 'form.first_name' | t }}</label>
+							<input class="w-full px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="{{ 'form.first_name' | t }}" id="FirstName" name="customer[first_name]" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} required>
+						</div>
 
-		<div class="mb-4 sm:mb-6">
-			<label
-				for="FirstName"
-				class="block"
-			>
-				{{ 'form.first_name' | t }}
-			</label>
+						<div class="mb-4">
+							<label for="LastName" class="sr-only">{{ 'form.last_name' | t }}</label>
+							<input class="w-full px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="text" placeholder="{{ 'form.last_name' | t }}" id="LastName" name="customer[last_name]" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} required>
+						</div>
 
-			<input
-				type="text"
-				id="FirstName"
-				name="customer[first_name]"
-				{% if form.first_name %}value="{{ form.first_name }}"{% endif %}
-				class="w-full"
-				required
-			>
-		</div>
+						<div class="mb-4">
+							<label for="CustomerEmail" class="sr-only">{{ 'form.email' | t }}</label>
+							<input class="w-full px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="email" placeholder="{{ 'form.email' | t }}" id="CustomerEmail" name="customer[email]" value="{% if form.email %}{{ form.email }}{% endif %}" required>
+						</div>
 
-		<div class="mb-4 sm:mb-6">
-			<label
-				for="LastName"
-				class="block"
-			>
-				{{ 'form.last_name' | t }}
-			</label>
+						<div class="mb-4">
+							<label for="CreatePassword" class="sr-only">{{ 'form.password' | t }}</label>
+							<input class="w-full px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" type="password" placeholder="{{ 'form.password' | t }}" id="CreatePassword" name="customer[password]" required>
+						</div>
 
-			<input
-				type="text"
-				id="LastName"
-				name="customer[last_name]"
-				{% if form.last_name %}value="{{ form.last_name }}"{% endif %}
-				class="w-full"
-				required
-			>
-		</div>
+						<label class="flex" for="">
+							<input class="mr-4 mt-1" type="checkbox" required>
+							<span class="text-sm">By singning up, you agree to our Terms, Data Policy and Cookies.</span>
+						</label>
 
-		<div class="mb-4 sm:mb-6">
-			<label
-				for="CustomerEmail"
-				class="block"
-			>
-				{{ 'form.email' | t }}
-			</label>
-
-			<input
-				type="email"
-				id="CustomerEmail"
-				name="customer[email]"
-				value="{% if form.email %}{{ form.email }}{% endif %}"
-				class="w-full"
-				required
-			>
-		</div>
-
-		<div class="mb-4 sm:mb-10">
-			<label
-				for="CreatePassword"
-				class="block"
-			>
-				{{ 'form.password' | t }}
-			</label>
-
-			<input
-				type="password"
-				id="CreatePassword"
-				name="customer[password]"
-				class="w-full"
-				required
-			>
-		</div>
-
-		<div class="flex flex-wrap gap-4 sm:gap-6">
-			<button
-				type="submit"
-				class="button button-primary"
-			>
-				{{ 'action.create_account' | t }}
-			</button>
-
-			<div class="w-full sm:w-auto flex justify-center items-center">
-				<span>{{ 'common.or' | t }}&nbsp;</span>
-
-				<a
-					href="{{ routes.root_url }}account/login"
-					class="underline"
-				>
-					{{ 'action.sign_in' | t }}
-				</a>
+						<div class="mt-12 md:mt-16 flex flex-wrap gap-4 sm:gap-6 justify-center">
+							<button type="submit" class="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">{{ 'action.create_account' | t }}</button>
+							<div class="w-full sm:w-auto flex justify-center items-center">
+								<span>{{ 'common.or' | t }}&nbsp;</span>
+								<a href="{{ routes.root_url }}account/login" class="underline">{{ 'action.sign_in' | t }}</a>
+							</div>
+						</div>
+					{% endform %}
+				</div>
 			</div>
 		</div>
-	{% endform %}
-</div>
+	</div>
+</section>

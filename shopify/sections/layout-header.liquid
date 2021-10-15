@@ -74,7 +74,9 @@
 		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
 		<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
 			<div class="flex items-center mb-8">
-				<a class="mr-auto text-3xl font-bold font-heading" href="#"><img src="yofte-assets/logos/yofte-logo.svg" alt="llll" width="NaN"></a>
+				<a class="mr-auto text-3xl font-bold font-heading" href="#">
+					<img src="{{ 'yofte-logo.static.svg' | asset_url }}" alt="llll" width="">
+				</a>
 				<button class="navbar-close">
 					<svg class="h-2 w-2 text-gray-500 cursor-pointer" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M9.00002 1L1 9.00002M1.00003 1L9.00005 9.00002" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -84,7 +86,7 @@
 			<div class="flex mb-8 justify-between">
 				<button>
 					<div class="flex items-center">
-						<img class="w-9 h-9 object-cover mr-2" src="yofte-assets/elements/avatar.svg" alt="">
+						<img class="w-9 h-9 object-cover mr-2" src="{{ 'avatar.static.svg' | asset_url }}" alt="">
 						<span class="mr-2 font-medium">Robert</span>
 						<span>
 							<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
