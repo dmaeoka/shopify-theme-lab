@@ -1,33 +1,43 @@
-<div class="container mb-12 md:mb-24">
-	<div class="grid lg:grid-cols-3 gap-4 mb-6 md:mb-12">
-		<div class="lg:col-start-2 text-2xl lg:text-3xl font-bold text-center">
-			{{ section.settings.headline }}
-		</div>
+<section class="py-20 bg-gray-100">
+	<div class="container mx-auto px-4">
+		<h2 class="mb-16 md:mb-24 text-4xl md:text-5xl font-bold font-heading">{{ section.settings.headline }}</h2>
+		<div class="flex flex-wrap -mx-3 mb-24">
+			{% assign collection = collections[section.settings.collection_featured] %}
 
-		<div class="hidden lg:flex justify-end items-center">
-			<a href="{{ routes.collections_url }}" class="button button-secondary flex justify-center items-center">
-				{{ 'action.view_more' | t }} {% render 'icon-chevron-right', class: 'w-4 h-auto ml-1' style: 'margin-top: 2px;' %}
-			</a>
+			{% unless collection == blank %}
+				{% for product in collection.products limit: section.settings.collection_products_limit %}
+					{% render 'layout-product', product: product %}
+				{% endfor %}
+			{% else %}
+				{% for i in (1..4) %}
+					<div class="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-0">
+						<div class="relative bg-gray-50">
+							<span class="absolute top-0 left-0 ml-6 mt-6 px-2 py-1 text-xs font-bold font-heading bg-white border-2 border-red-500 rounded-full text-red-500">-15%</span>
+							<a class="block" href="#">
+								<img class="w-full h-64 object-cover" src="https://picsum.photos/300" alt="">
+							</a>
+							<div class="px-6 pb-6 mt-8">
+								<a class="block mb-2" href="#">
+									<h3 class="mb-2 text-xl font-bold font-heading">NIKE basketball ball</h3>
+									<p class="text-lg font-bold font-heading text-blue-500">
+										<span>$34.30</span>
+										<span class="text-xs text-gray-500 font-semibold font-heading line-through">$40.99</span>
+									</p>
+								</a>
+								<a class="ml-auto mr-2 flex items-center justify-center w-12 h-12 bg-blue-300 hover:bg-blue-400 rounded-md" href="#">
+									<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" width="2" height="12" fill="white"></rect><rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)" fill="white"></rect></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% endunless %}
+		</div>
+		<div class="text-center">
+			<a class="inline-block bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-6 px-8 rounded-md uppercase" href="{{ routes.collections_url }}">{{ 'action.view_more' | t }}</a>
 		</div>
 	</div>
-
-	<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
-		{% assign collection = collections[section.settings.collection_featured] %}
-
-		{% unless collection == blank %}
-			{% for product in collection.products limit: section.settings.collection_products_limit %}
-				{% render 'layout-product', product: product %}
-			{% endfor %}
-		{% else %}
-			{% for i in (1..4) %}
-				<div>
-					{% capture placeholder %}product-{{ i }}{% endcapture %}
-					{{ placeholder | placeholder_svg_tag: 'w-full h-full border' }}
-				</div>
-			{% endfor %}
-		{% endunless %}
-	</div>
-</div>
+</section>
 
 {% schema %}
 {

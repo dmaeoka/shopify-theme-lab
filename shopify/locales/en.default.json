@@ -153,8 +153,9 @@
 		"store_owner": "Are you the store owner?"
 	},
 	"404": {
-		"title": "404 Page Not Found",
-		"text": "The page you requested does not exist."
+		"title": "404",
+		"text": "Sorry, we can’t find that page or something has gone wrong.",
+		"misspelling": "Checkout for any URL misspelling."
 	},
 	"footer": {
 		"menu": "Quick links",
