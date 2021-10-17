@@ -86,13 +86,16 @@
 			return JSON.parse('{{ str }}');
 		})();
 
-		this.performance.mark('YO:theme_stylesheet_loaded.start');
+		this.performance.mark('theme_stylesheet_loaded.start');
+		console.time('theme_stylesheet_loaded');
+
 		this.onLoadStylesheet = () => {
-			this.performance.mark('YO:theme_stylesheet_loaded.end');
-			this.performance.measure('YO:theme_stylesheet_loaded', 'YO:theme_stylesheet_loaded.start', 'YO:theme_stylesheet_loaded.end');
+			this.performance.mark('theme_stylesheet_loaded.end');
+			this.performance.measure('theme_stylesheet_loaded', 'theme_stylesheet_loaded.start', 'theme_stylesheet_loaded.end');
 			const link = document.querySelector(`link[href="${this.theme_config.stylesheet}"]`);
 			link.loaded = true;
 			link.dispatchEvent(new Event('load'));
+			console.timeEnd('theme_stylesheet_loaded');
 		}
 
 		{%- if settings.show_helper -%}
