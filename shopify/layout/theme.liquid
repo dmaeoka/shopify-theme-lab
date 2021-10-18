@@ -115,6 +115,8 @@
 
 		{{ 'base.static.css' | asset_url | stylesheet_tag }}
 
+		{{ 'bundle.css' | asset_url | stylesheet_tag }}
+
 		{%- unless settings.type_body_font.system? -%}
 			<link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
 		{%- endunless -%}
@@ -173,5 +175,8 @@
 		{%- if settings.predictive_search_enabled -%}
 			<script src="{{ 'predictive-search.static.js' | asset_url }}" defer="defer"></script>
 		{%- endif -%}
+
+		<!-- webpack bundle -->
+		<script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
 	</body>
 </html>
