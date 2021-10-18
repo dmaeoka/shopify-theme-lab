@@ -1,96 +1,91 @@
 {
 	"sections": {
-		"section-hero": {
-			"type": "section-hero",
+		"image_banner": {
+			"type": "image-banner",
 			"settings": {
-				"headline": "Headline",
-				"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos hic praesentium recusandae dolores odio animi deleniti officia cum itaque.",
-				"button-url": "/",
-				"button-text": "Button"
-			}
-		},
-		"section-collection": {
-			"type": "section-collection",
-			"settings": {
-				"headline": "Selected products",
-				"collection_featured": "",
-				"collection_products_limit": "4"
-			}
-		},
-		"section-banner": {
-			"type": "section-banner",
-			"settings": {
-				"headline": "Headline",
-				"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos hic praesentium recusandae dolores odio animi deleniti officia cum itaque.",
-				"button-url": "/",
-				"button-text": "Button"
-			}
-		},
-		"section-image-row": {
-			"type": "section-image-row",
-			"blocks": {
-				"image-1": {
-					"type": "image",
-					"settings": {}
-				},
-				"image-2": {
-					"type": "image",
-					"settings": {}
-				},
-				"image-3": {
-					"type": "image",
-					"settings": {}
-				}
+				"desktop_text_box_position": "flex-end"
 			},
-			"block_order": ["image-1", "image-2", "image-3"],
-			"settings": {
-				"headline": "Our store"
-			}
-		},
-		"section-quotes": {
-			"type": "section-quotes",
 			"blocks": {
-				"quote-1": {
-					"type": "quote",
+				"heading": {
+					"type": "heading",
 					"settings": {
-						"quote-text": "Add customer reviews and testimonials to showcase your store’s happy customers.",
-						"quote-author": "Author's name"
+						"heading": "Talk about your brand"
 					}
 				},
-				"quote-2": {
-					"type": "quote",
+				"button": {
+					"type": "buttons",
 					"settings": {
-						"quote-text": "Add customer reviews and testimonials to showcase your store’s happy customers.",
-						"quote-author": "Author's name"
-					}
-				},
-				"quote-3": {
-					"type": "quote",
-					"settings": {
-						"quote-text": "Add customer reviews and testimonials to showcase your store’s happy customers.",
-						"quote-author": "Author's name"
+						"button_label_1": "Shop all",
+						"button_link_1": "shopify://collections/all",
+						"button_label_2": ""
 					}
 				}
 			},
-			"block_order": ["quote-1", "quote-2", "quote-3"],
+			"block_order": ["heading", "button"]
+		},
+		"rich_text": {
+			"type": "rich-text",
+			"blocks": {
+				"heading": {
+					"type": "heading"
+				},
+				"text": {
+					"type": "text"
+				},
+				"button": {
+					"type": "button"
+				}
+			},
+			"block_order": ["heading", "text", "button"]
+		},
+		"featured_products": {
+			"type": "featured-collection",
 			"settings": {
-				"headline": "What others say about us"
+				"title": "Featured products",
+				"collection": "all",
+				"image_ratio": "square"
 			}
 		},
-		"section-newsletter": {
-			"type": "section-newsletter",
-			"settings": {
-				"headline": "Our newsletter",
-				"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos hic praesentium recusandae dolores odio animi deleniti officia cum itaque."
-			}
+		"collage": {
+			"type": "collage",
+			"blocks": {
+				"video": {
+					"type": "video"
+				},
+				"product": {
+					"type": "product"
+				},
+				"collection": {
+					"type": "collection"
+				}
+			},
+			"block_order": ["video", "product", "collection"]
+		},
+		"video": {
+			"type": "video"
+		},
+		"multi_column": {
+			"type": "multicolumn",
+			"blocks": {
+				"column1": {
+					"type": "column"
+				},
+				"column2": {
+					"type": "column"
+				},
+				"column3": {
+					"type": "column"
+				}
+			},
+			"block_order": ["column1", "column2", "column3"]
 		}
 	},
 	"order": [
-		"section-hero",
-		"section-collection",
-		"section-banner",
-		"section-image-row",
-		"section-quotes",
-		"section-newsletter"
+		"image_banner",
+		"rich_text",
+		"featured_products",
+		"collage",
+		"video",
+		"multi_column"
 	]
 }

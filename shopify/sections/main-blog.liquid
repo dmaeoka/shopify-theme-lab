@@ -1,23 +1,100 @@
-<!-- shopify/sections/main-blog.liquid -->
-<section class="py-20 bg-blue-50 bg-opacity-30 overflow-x-hidden" x-data>
-	<div class="container mx-auto px-4">
-		<h1 class="mb-16 md:mb-24 text-4xl md:text-5xl font-bold font-heading">{{ blog.title }}</h1>
-		{% paginate blog.articles by 8 %}
-			<div class="flex flex-wrap -mx-3 mb-20">
-				{% for article in blog.articles %}
-					{% render 'layout-blog-article',
-						article: article %}
-				{% endfor %}
-			</div>
-			<div class="text-center"><a class="inline-block bg-orange-300 text-white font-bold font-heading py-5 px-8 rounded-md uppercase" href="#">Show More</a></div>
-			{% render 'layout-pagination', paginate: paginate %}
-		{% endpaginate %}
+{{ 'component-article-card.static.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.static.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.static.css' | asset_url | stylesheet_tag }}
+
+
+{%- paginate blog.articles by 6 -%}
+
+	<div class="main-blog page-width">
+		<h1 class="title--primary">{{ blog.title | escape }}</h1>
+
+		<div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+			{%- for article in blog.articles -%}
+				<div class="blog-articles__article article">
+					{%- render 'article-card', article: article, image_height: section.settings.image_height, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author -%}
+				</div>
+			{%- endfor -%}
+		</div>
+
+		{%- if paginate.pages > 1 -%}
+			{%- render 'pagination', paginate: paginate -%}
+		{%- endif -%}
 	</div>
-</section>
+{%- endpaginate -%}
 
 {% schema %}
 {
-	"name": "Main blog",
-	"class": "shopify-section-vue"
+	"name": "t:sections.main-blog.name",
+	"tag": "section",
+	"class": "spaced-section",
+	"settings": [
+		{
+			"type": "header",
+			"content": "t:sections.main-blog.settings.header.content"
+		},
+		{
+			"type": "select",
+			"id": "layout",
+			"options": [
+				{
+					"value": "grid",
+					"label": "t:sections.main-blog.settings.layout.options__1.label"
+				},
+				{
+					"value": "collage",
+					"label": "t:sections.main-blog.settings.layout.options__2.label"
+				}
+			],
+			"default": "collage",
+			"label": "t:sections.main-blog.settings.layout.label"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_image",
+			"default": true,
+			"label": "t:sections.main-blog.settings.show_image.label"
+		},
+		{
+			"type": "select",
+			"id": "image_height",
+			"options": [
+				{
+					"value": "adapt",
+					"label": "t:sections.main-blog.settings.image_height.options__1.label"
+				},
+				{
+					"value": "small",
+					"label": "t:sections.main-blog.settings.image_height.options__2.label"
+				},
+				{
+					"value": "medium",
+					"label": "t:sections.main-blog.settings.image_height.options__3.label"
+				},
+				{
+					"value": "large",
+					"label": "t:sections.main-blog.settings.image_height.options__4.label"
+				}
+			],
+			"default": "medium",
+			"label": "t:sections.main-blog.settings.image_height.label",
+			"info": "t:sections.main-blog.settings.image_height.info"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_date",
+			"default": true,
+			"label": "t:sections.main-blog.settings.show_date.label"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_author",
+			"default": false,
+			"label": "t:sections.main-blog.settings.show_author.label"
+		},
+		{
+			"type": "paragraph",
+			"content": "t:sections.main-blog.settings.paragraph.content"
+		}
+	]
 }
 {% endschema %}
