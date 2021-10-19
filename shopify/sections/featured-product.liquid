@@ -1,3 +1,4 @@
+{%- comment -%}
 {{ 'section-main-product.static.css' | asset_url | stylesheet_tag }}
 {{ 'section-featured-product.static.css' | asset_url | stylesheet_tag }}
 {{ 'component-accordion.static.css' | asset_url | stylesheet_tag }}
@@ -357,6 +358,7 @@
 		</product-modal>
 	</div>
 </section>
+{%- endcomment -%}
 
 {% javascript %}
 	if (!customElements.get('product-modal')) {
@@ -394,7 +396,9 @@
 		});
 	}
 {% endjavascript %}
+
 <script src="{{ 'product-form.static.js' | asset_url }}" defer="defer"></script>
+
 {%- if first_3d_model -%}
 	<script type="application/json" id="ProductJSON-{{ product.id }}">
 		{{ product.media | where: 'media_type', 'model' | json }}
