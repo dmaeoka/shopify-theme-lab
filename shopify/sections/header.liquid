@@ -149,7 +149,7 @@
 	</nav>
 </div>
 
-<!-- OLD
+{%- comment -%}
 <link rel="stylesheet" href="{{ 'component-list-menu.static.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.static.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.static.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -663,7 +663,8 @@
 </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
 
 {%- render 'cart-notification', color_scheme: section.settings.color_scheme -%}
--->
+
+{%- endcomment -%}
 
 {% javascript %}
 	class StickyHeader extends HTMLElement {
