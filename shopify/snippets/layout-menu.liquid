@@ -1,6 +1,6 @@
 <!-- shopify/snippets/layout-menu.liquid -->
 <ul
-	class="hidden gap-12 lg:flex absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:items-center lg:w-auto"
+	class="hidden gap-12 lg:flex lg:items-center lg:w-auto m-auto"
 	style="{{ style | default: '' }}">
 	{% for link in linklists['main-menu'].links %}
 		<li><a href="{{ link.url }}" class="font-bold font-heading hover:text-gray-600 {% if link.active %}border-black{% else %}border-transparent hover:border-black{% endif %}">{{ link.title }}</a></li>
