@@ -2,9 +2,9 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}" class="overflow-y-scroll no-js">
 	<head>
-		<meta charset="utf-8">
+		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 		<link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
@@ -53,10 +53,6 @@
 				</main>
 
 				{% section 'layout-footer' %}
-				{% comment %}
-				{% section 'layout-mobile-navigation' %}
-				{% render 'layout-mobile-menu' %}
-				{% endcomment %}
 			</div>
 		{% endif %}
 

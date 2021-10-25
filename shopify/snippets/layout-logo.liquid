@@ -1,0 +1,17 @@
+<!-- shopify/snippets/layout-logo.liquid -->
+<a class="{{ class | default: '' }}" style="{{ style | default: '' }}" href="{{ routes.root_url }}">
+	{%- assign shop_class = 'sr-only' -%}
+	{%- if section.settings.logo != blank -%}
+		{%- assign image_size = section.settings.logo_width | append: 'x' -%}
+		<img
+			srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+			src="{{ section.settings.logo | img_url: image_size }}"
+			width="{{ section.settings.logo.width }}"
+			height="{{ section.settings.logo.height }}"
+			alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+		>
+	{%- else -%}
+		{%- assign shop_class = 'text-3xl font-bold font-heading' -%}
+	{%- endif -%}
+	<span class="{{ shop_class }}">{{ shop.name }}</span>
+</a>

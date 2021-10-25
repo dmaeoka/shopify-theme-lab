@@ -1,0 +1,7 @@
+<a class="{{ class | default: '' }}" href="{{ routes.cart_url }}">
+	{% render 'icon', icon: 'cart' %}
+	<span class="sr-only">{{ 'action.cart' | t }}</span>
+	{% if cart.item_count > 0 %}
+		<span class="inline-block w-6 h-6 text-center bg-orange-300 rounded-full font-semibold font-heading text-white">{{ cart.item_count }}</span>
+	{% endif %}
+</a>

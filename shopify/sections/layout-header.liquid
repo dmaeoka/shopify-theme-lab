@@ -3,29 +3,26 @@
 	<div class="relative">
 		<nav class="relative flex justify-between bg-blue-50 bg-opacity-30 border-b">
 			<div class="p-6 flex w-full items-center">
-				<a class="flex-shrink-0 text-3xl font-bold font-heading" href="{{ routes.root_url }}">
-					<img src="{{ 'yofte-logo.static.svg' | asset_url }}" alt="{{ shop.name }}" width="135" loadding="lazy">
-					<span class="sr-only">{{ shop.name }}</span>
-				</a>
+				{% render 'layout-logo', class: 'flex-shrink-0' %}
+				<div class="hidden xl:flex max-w-xs py-3 pl-4 px-2 bg-white rounded-lg ml-4 w-">
+					{% render 'icon', icon: 'search', class: 'w-6 h-auto mr-2' %}
+					<input class="w-full border-0 focus:ring-transparent focus:outline-none p-0" type="text" placeholder="">
+					<!-- <select class="pl-6 pr-6 border-0 border-l border-gray-100 focus:border-gray-100 focus:ring-transparent focus:outline-none cursor-pointer" name="" id="">
+						<option>All&nbsp;items</option>
+						<option>Collection</option>
+						<option>Option</option>
+					</select> -->
+				</div>
 				{% render 'layout-menu' %}
 			</div>
 
 			<div class="hidden xl:flex items-center justify-end mr-8 gap-4">
-				<a href="{{ routes.search_url }}">
-					{% render 'icon', icon: "search", class: icon_class %}
-					<span class="sr-only">{{ 'action.search' | t }}</span>
+				<a href="/pages/wishlist">
+					{% render 'icon', icon: 'heart' %}
+					<span class="sr-only">Wishlist</span>
 				</a>
 
-				<a href="#">
-					{% render 'icon', icon: 'heart' %}
-				</a>
-				<a class="flex items-center" href="{{ routes.cart_url }}">
-					{% render 'icon', icon: 'cart' %}
-					<span class="sr-only">{{ 'action.cart' | t }}</span>
-					{% if cart.item_count > 0 %}
-						<span class="inline-block w-6 h-6 text-center bg-orange-300 rounded-full font-semibold font-heading text-white">{{ cart.item_count }}</span>
-					{% endif %}
-				</a>
+				{% render 'cart-count', class: 'flex items-center' %}
 			</div>
 
 			{% if shop.customer_accounts_enabled %}
@@ -48,121 +45,15 @@
 				{% endif %}
 			{% endif %}
 
-			<a class="xl:hidden flex mr-6 items-center text-gray-900" href="{{ routes.cart_url }}">
-				{% render 'icon', icon: 'cart', class: 'mr-2' %}
+			{% render 'cart-count', class: 'xl:hidden flex items-center text-gray-900' %}
 
-				<span class="sr-only">{{ 'action.cart' | t }}</span>
-				{% if cart.item_count > 0 %}
-					<span class="inline-block w-6 h-6 text-center text-white bg-orange-300 rounded-full font-semibold font-heading">{{ cart.item_count }}</span>
-				{% endif %}
-			</a>
-
-			<a class="navbar-burger self-center mr-12 xl:hidden" href="#">
+			<button @click="toggleMenu($event)" class="p-4 self-center xl:hidden">
 				{% render 'icon', icon: 'burger' %}
-			</a>
+			</button>
 		</nav>
 	</div>
 
-	<!-- mobile menu -->
-	<div class="hidden relative z-50 navbar-menu" tabindex="-1">
-		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-		<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto gap-8">
-			<div class="flex items-center">
-				<a class="mr-auto text-3xl font-bold font-heading" href="#">
-					<img src="{{ 'yofte-logo.static.svg' | asset_url }}" alt="{{ shop.name }}" width="135" height="39" loadding="lazy" class="h-9">
-				</a>
-				<button class="navbar-close">
-					{% render 'icon', icon: 'close', class="h-2 w-2 text-gray-500 cursor-pointer" %}
-				</button>
-			</div>
-			<div class="flex justify-between">
-				{%- if shop.customer_accounts_enabled -%}
-					<a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="inline-flex items-center font-semibold font-heading">
-						{% render 'icon', icon: 'user', class:"mr-3" %}
-
-						{%- liquid
-							if customer
-								echo 'customer.entry.create_account' | t
-							else
-								echo 'customer.entry.log_in' | t
-							endif
-						-%}
-					</a>
-				{%- endif -%}
-				<div class="flex items-center">
-					<a class="mr-10" href="#">
-						{% render 'icon', icon: 'heart' %}
-					</a>
-					<a class="flex items-center" href="#">
-						{% render 'icon', icon: 'cart', class="mr-3" %}
-						<span class="inline-block w-6 h-6 text-center bg-gray-100 rounded-full font-semibold font-heading">3</span>
-					</a>
-				</div>
-			</div>
-
-			<div>
-				<label for="mobile-search" class="sr-only">Search</label>
-				<input id="mobile-search" class="block w-full py-5 px-8 bg-gray-100 rounded-md border-transparent focus:ring-blue-300 focus:border-blue-300 focus:outline-none" type="search" placeholder="Search">
-			</div>
-
-			<ul class="flex flex-col text-2xl gap-4 font-bold font-heading" role="list">
-				{%- for link in section.settings.menu.links -%}
-				<li>
-					{%- if link.links != blank -%}
-					<details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
-						<summary class="{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-							{{ link.title | escape }}
-						</summary>
-						<div id="link-{{ link.title | escape }}" tabindex="-1">
-							<div>
-								<button aria-expanded="true">
-									{{ link.title | escape }}
-								</button>
-								<ul role="list" tabindex="-1">
-									{%- for childlink in link.links -%}
-										<li>
-											{%- if childlink.links == blank -%}
-												<a href="{{ childlink.url }}" class="{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
-													{{ childlink.title | escape }}
-												</a>
-											{%- else -%}
-												<details id="Details-menu-drawer-submenu-{{ forloop.index }}">
-													<summary class="">
-														{{ childlink.title | escape }}
-													</summary>
-													<div id="childlink-{{ childlink.title | escape }}">
-														<button aria-expanded="true">
-															{{ childlink.title | escape }}
-														</button>
-														<ul role="list" tabindex="-1">
-															{%- for grandchildlink in childlink.links -%}
-																<li>
-																	<a href="{{ grandchildlink.url }}" class="{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
-																		{{ grandchildlink.title | escape }}
-																	</a>
-																</li>
-															{%- endfor -%}
-														</ul>
-													</div>
-												</details>
-											{%- endif -%}
-										</li>
-									{%- endfor -%}
-								</ul>
-							</div>
-						</div>
-					</details>
-
-					{%- else -%}
-					<a href="{{ link.url }}" class="{% if link.current %} menu-drawer__menu-item--active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
-						{{ link.title | escape }}
-					</a>
-					{%- endif -%}
-				</li>
-				{%- endfor -%}
-			</ul>
-		</nav>
-	</div>
+	{% render 'layout-mobile-menu', class: 'relative z-50' %}
 </section>
 
 <script type="application/ld+json">

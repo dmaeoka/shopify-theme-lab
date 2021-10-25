@@ -8,16 +8,15 @@ Alpine.data("header", () => ({
 	open: false,
 
 	init() {
-		console.log("Alpine data");
+		console.log("Alpine Header");
 	},
-	toggle() {
-		this.open = !this.open;
-	},
-}));
 
-Alpine.data("banner", () => ({
-	init() {
-		console.log("Banner");
+	toggleMenu(e) {
+		try {
+			this.open = !this.open;
+		} catch (error) {
+			console.warn(error);
+		}
 	},
 }));
 
