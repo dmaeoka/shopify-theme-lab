@@ -4,9 +4,10 @@
 		<nav class="relative flex justify-between bg-blue-50 bg-opacity-30 border-b">
 			<div class="p-6 flex w-full items-center">
 				{% render 'layout-logo', class: 'flex-shrink-0' %}
-				<div class="hidden xl:flex max-w-xs py-3 pl-4 px-2 bg-white rounded-lg ml-4 w-">
-					{% render 'icon', icon: 'search', class: 'w-6 h-auto mr-2' %}
-					<input class="w-full border-0 focus:ring-transparent focus:outline-none p-0" type="text" placeholder="">
+				<div class="hidden lg:flex max-w-xs py-3 pl-4 px-2 bg-white rounded-lg ml-4">
+					{% render 'icon', icon: 'search', class: 'w-6 h-auto mr-2 flex-shrink-0' %}
+					<label for="search" class="sr-only">Search</label>
+					<input id="search" class="w-full border-0 focus:ring-transparent focus:outline-none p-0" type="text" placeholder="Search products">
 					<!-- <select class="pl-6 pr-6 border-0 border-l border-gray-100 focus:border-gray-100 focus:ring-transparent focus:outline-none cursor-pointer" name="" id="">
 						<option>All&nbsp;items</option>
 						<option>Collection</option>
@@ -128,21 +129,6 @@
 			],
 			"default": "background-1",
 			"label": "Color scheme"
-		},
-		{
-			"type": "image_picker",
-			"id": "logo",
-			"label": "Logo Image"
-		},
-		{
-			"type": "range",
-			"id": "logo_width",
-			"min": 50,
-			"max": 250,
-			"step": 10,
-			"default": 100,
-			"unit": "px",
-			"label": "Custom logo width"
 		},
 		{
 			"type": "select",

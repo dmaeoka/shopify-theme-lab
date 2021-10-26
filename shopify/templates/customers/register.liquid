@@ -1,19 +1,16 @@
 <!-- shopify/templates/customers/register.liquid -->
 {% layout 'no-header' %}
-<section class="py-20 bg-gray-100 overflow-x-hidden">
-	<div class="relative container px-4 mx-auto">
-		<div class="relative max-w-4xl mx-auto">
-			<div class="absolute inset-0 bg-blue-200 my-24 -ml-4 -mr-4"></div>
-			<div class="relative py-16 md:pt-32 md:pb-20 px-4 sm:px-8 bg-white">
-				<div class="max-w-lg mx-auto text-center">
-					<a class="inline-block mb-14 text-3xl font-bold font-heading" href="{{ routes.root_url }}">
-						<img class="h-9" src="{{ 'yofte-logo.static.svg' | asset_url }}" alt="" width="auto">
-					</a>
-					<h1 class="mb-8 text-4xl md:text-5xl font-bold font-heading">{{ 'customer.entry.create_account' | t }}</h1>
-					<p class="mb-10 font-semibold font-heading">Please, do not hesitate</p>
+
+<section class="relative overflow-x-hidden" x-data="login">
+	<div class="container px-4 mx-auto">
+		<div class="flex flex-wrap items-center">
+			<div class="w-full lg:w-2/6 px-4 mb-12 lg:mb-0">
+				<div class="py-20 text-center">
+					{% render 'layout-logo', class: 'inline-block mb-14' %}
 
 					{% form 'create_customer' %}
 						<input type="hidden" name="customer[tags]" value="locale={{ request.locale.iso_code }}" />
+						<h3 class="mb-8 text-4xl md:text-5xl font-bold font-heading">{{ 'customer.entry.create_account' | t }}</h3>
 						{% if form.errors %}
 							{% capture error_text %}
 								{{ form.errors | default_errors }}
@@ -59,8 +56,11 @@
 							</div>
 						</div>
 					{% endform %}
+
 				</div>
+				<img class="lg:hidden h-96 w-full object-cover" src="https://picsum.photos/1240" alt="" loading="lazy" width="1240" height="1240">
 			</div>
 		</div>
 	</div>
+	<div class="hidden lg:block lg:absolute top-0 bottom-0 right-0 lg:w-3/6 bg-center bg-cover bg-no-repeat" style="background-image: url('https://picsum.photos/1240');"></div>
 </section>

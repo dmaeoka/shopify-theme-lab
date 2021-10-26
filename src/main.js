@@ -20,6 +20,22 @@ Alpine.data("header", () => ({
 	},
 }));
 
+Alpine.data("login", () => ({
+	login: true,
+
+	init() {
+		console.log("Alpine Header");
+	},
+
+	toggleLogin(e) {
+		try {
+			this.login = !this.login;
+		} catch (error) {
+			console.warn(error);
+		}
+	},
+}));
+
 Alpine.data("banner", () => ({
 	init() {
 		console.log("Banner");
